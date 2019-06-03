@@ -11,7 +11,7 @@ export class UserDataService {
   correctAns: number;
   wrongAns: number;
   barChart = [];
-  ansArray = [];
+  ansArray: Array<boolean>;
   constructor(private http: HttpClient) {
   }
   
@@ -39,6 +39,7 @@ public markControlsDirty(group: FormGroup | FormArray): void {
 calculateAnswer(answers,userJson) {
   this.correctAns = 0;
   this.wrongAns = 0;
+  this.ansArray = [];
   answers.map((val,index) => {
     if(val === userJson[index].ans){
       this.correctAns++;
@@ -51,7 +52,6 @@ calculateAnswer(answers,userJson) {
     this.syncWrong.next(this.wrongAns)
     this.ansArrayEmitter.next(this.ansArray);
   } )
-  console.log(this.ansArray)
 }
 
 reset() {

@@ -1,15 +1,18 @@
 <form *ngIf =  "cricketForm" [formGroup]="cricketForm">
-  <div class="question-wrapper" *ngFor = "let control of formArray?.controls; let i =index ">
-    <div class="label">{{userJson[i].question}}</div>
+  <div  *ngFor = "let control of formArray?.controls; let i =index ">
+    <div class="question-wrapper" [ngClass]="ansArrayCheck && !ansArray[i] ? 'highlight' : 'white'">
+    <div class="label" >{{userJson[i].question}}</div>
     <mat-radio-group class="option-wrapper" [formControl]="control">
       <div class="option" *ngFor = "let option of userJson[i].options; let j =index">
         <mat-radio-button class="radio" [value]=option>{{option}}</mat-radio-button>
       </div>
     </mat-radio-group>
-    <div *ngIf = "ansArrayCheck && !ansArray[i]">wrong answer</div>
-    
-  <div class="error" *ngIf="control.invalid && control.touched && submitted" >select the answer</div>
+  <div class="error" *ngIf="control.invalid && control.touched && submitted" >Select the answer</div>
   </div>
+</div>
+  <div class="button-wrapper">
     <button color="primary" class ="button" mat-raised-button (click)="onSubmit()">Submit</button>
     <button color="primary" mat-raised-button (click)="onReset()">Reset</button>
+  </div>
+    
 </form>

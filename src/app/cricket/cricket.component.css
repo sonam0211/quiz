@@ -6,16 +6,17 @@
 }
 .error{
     margin-top: 5px;
-    color: red;
-}
-.asterisk{
-    color: red;
+    color: #e57373;
 }
 .radio{
     margin-top: 5px;
 }
 .highlight{
-    color:red;
+    background: #ffcdd2;
+}
+
+.white {
+    background: #fff;
 }
 
 .question-wrapper {
@@ -24,7 +25,6 @@
     padding: 15px;
     width: 100%;
     box-sizing: border-box;
-    background: #fff;
     box-shadow: 0 1px 4px 0 rgba(0,0,0,.07);
 }
 
@@ -49,4 +49,9 @@
 .option:nth-of-type(2n) {
     border-right: 1px solid #ebebeb;
     border-top: 1px solid #ebebeb;
+}
+
+.button-wrapper {
+    text-align: center;
+    margin-bottom: 30px;
 }

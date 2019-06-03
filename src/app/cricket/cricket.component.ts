@@ -22,7 +22,7 @@ export class CricketComponent implements OnInit {
   formValue: String[];
   BarChart=[];
   submitted: boolean = false;
-  ansArray
+  ansArray: Array<string>;
   ansArrayCheck: boolean = false;
   
   constructor(private formBuilder: FormBuilder,  private userDataService: UserDataService) { }
@@ -40,15 +40,13 @@ export class CricketComponent implements OnInit {
       questions : this.formArray
     })
     });
-    this.wrongAnshighlight();
-    console.log(this.ansArray)
 }
 
 wrongAnshighlight(){
   this.userDataService.castansArrayEmitter.subscribe(data => 
-    {this.ansArray =data
-      this.ansArrayCheck =true
-      console.log(this.ansArray)
+    {
+      this.ansArray = data;
+      this.ansArrayCheck = true;
     });
 }
 
@@ -56,9 +54,10 @@ wrongAnshighlight(){
     if(this.cricketForm.valid) {
       this.formValue =this.cricketForm.value;
       this.userDataService.calculateAnswer(this.formValue['questions'], this.userJson);
+      this.wrongAnshighlight();
     } else {
       this.submitted = true;
-      this.userDataService.markControlsDirty(this.cricketForm)
+      this.userDataService.markControlsDirty(this.cricketForm);
       return;
     }
   }
@@ -66,6 +65,7 @@ wrongAnshighlight(){
   onReset() {
     this.cricketForm.reset();
     this.userDataService.reset();
+    this.ansArrayCheck = false;
   }
   
 }

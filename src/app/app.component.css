@@ -1,9 +1,11 @@
 .app-wrapper {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .container {
     flex-grow: 1;
     width: 50%;
+    min-width: 350px;
 }

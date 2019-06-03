@@ -11,20 +11,12 @@ export class BargraphComponent implements OnInit {
   BarChart=[];
   correctAns;
   wrongAns;
-  constructor(private userDataService: UserDataService) { 
-    
-  }
-  
-
+  constructor(private userDataService: UserDataService) { }
   ngOnInit() {
-    this.userDataService.castCorrect.subscribe(user=> 
-      {this.correctAns = user
-        console.log(this.correctAns)
-        
-      });
-
-    this.userDataService.castWrong.subscribe(user=> {
-      this.wrongAns = user;
+    this.userDataService.castCorrect.subscribe(data => 
+      this.correctAns = data);
+      this.userDataService.castWrong.subscribe(data => {
+      this.wrongAns = data;
       this.showGraph()
     });     
 }
