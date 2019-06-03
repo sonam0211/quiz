@@ -1,0 +1,9 @@
+.app-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.container {
+    flex-grow: 1;
+    width: 50%;
+}
