@@ -22,9 +22,10 @@ export class CricketComponent implements OnInit {
   formValue: String[];
   BarChart=[];
   submitted: boolean = false;
+  ansArray
+  ansArrayCheck: boolean = false;
   
   constructor(private formBuilder: FormBuilder,  private userDataService: UserDataService) { }
-
  
     ngOnInit() {
       
@@ -39,8 +40,17 @@ export class CricketComponent implements OnInit {
       questions : this.formArray
     })
     });
+    this.wrongAnshighlight();
+    console.log(this.ansArray)
 }
 
+wrongAnshighlight(){
+  this.userDataService.castansArrayEmitter.subscribe(data => 
+    {this.ansArray =data
+      this.ansArrayCheck =true
+      console.log(this.ansArray)
+    });
+}
 
   onSubmit() {
     if(this.cricketForm.valid) {

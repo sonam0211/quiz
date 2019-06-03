@@ -10,14 +10,17 @@ import { FormGroup, FormArray } from '@angular/forms';
 export class UserDataService {
   correctAns: number;
   wrongAns: number;
-  barChart = []
+  barChart = [];
+  ansArray = [];
   constructor(private http: HttpClient) {
   }
   
   syncCorrect = new BehaviorSubject<number>(this.correctAns);
   syncWrong = new BehaviorSubject<number>(this.wrongAns);
+  ansArrayEmitter = new BehaviorSubject<any>(this.ansArray);
   castCorrect = this.syncCorrect.asObservable();
   castWrong = this.syncWrong.asObservable();
+  castansArrayEmitter = this.ansArrayEmitter.asObservable();
 
   public getJSON(): Observable<any> {
     return this.http.get("./assets/questions.json");
@@ -33,22 +36,22 @@ public markControlsDirty(group: FormGroup | FormArray): void {
       }
   });
 }
-calculateAnswer(questions,userJson) {
+calculateAnswer(answers,userJson) {
   this.correctAns = 0;
   this.wrongAns = 0;
-  questions.map((val,index) => {
+  answers.map((val,index) => {
     if(val === userJson[index].ans){
       this.correctAns++;
-      console.log(this.correctAns)
-      
-      console.log(this.correctAns)
+      this.ansArray.push(true);
     } else {
       this.wrongAns++;
-      
+      this.ansArray.push(false);
     }
     this.syncCorrect.next(this.correctAns)
     this.syncWrong.next(this.wrongAns)
+    this.ansArrayEmitter.next(this.ansArray);
   } )
+  console.log(this.ansArray)
 }
 
 reset() {

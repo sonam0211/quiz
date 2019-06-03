@@ -6,6 +6,8 @@
         <mat-radio-button class="radio" [value]=option>{{option}}</mat-radio-button>
       </div>
     </mat-radio-group>
+    <div *ngIf = "ansArrayCheck && !ansArray[i]">wrong answer</div>
+    
   <div class="error" *ngIf="control.invalid && control.touched && submitted" >select the answer</div>
   </div>
     <button color="primary" class ="button" mat-raised-button (click)="onSubmit()">Submit</button>
