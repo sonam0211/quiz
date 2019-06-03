@@ -10,12 +10,12 @@ import { UserDataService } from '../user-data.service';
 
 
 @Component({
-  selector: 'app-cricket',
-  templateUrl: './cricket.component.html',
-  styleUrls: ['./cricket.component.css']
+  selector: 'app-questionnaire',
+  templateUrl: './questionnaire.component.html',
+  styleUrls: ['./questionnaire.component.css']
 })
-export class CricketComponent implements OnInit {
-  cricketForm: FormGroup;
+export class QuestionnaireComponent implements OnInit {
+  questionnaireForm: FormGroup;
   userJson: any;
   options: Array<string>;
   formArray:FormArray
@@ -36,7 +36,7 @@ export class CricketComponent implements OnInit {
         this.userJson.map(
           ()=>new FormControl(null,Validators.required))
     );
-    this.cricketForm = this.formBuilder.group({
+    this.questionnaireForm = this.formBuilder.group({
       questions : this.formArray
     })
     });
@@ -51,19 +51,19 @@ wrongAnshighlight(){
 }
 
   onSubmit() {
-    if(this.cricketForm.valid) {
-      this.formValue =this.cricketForm.value;
+    if(this.questionnaireForm.valid) {
+      this.formValue =this.questionnaireForm.value;
       this.userDataService.calculateAnswer(this.formValue['questions'], this.userJson);
       this.wrongAnshighlight();
     } else {
       this.submitted = true;
-      this.userDataService.markControlsDirty(this.cricketForm);
+      this.userDataService.markControlsDirty(this.questionnaireForm);
       return;
     }
   }
 
   onReset() {
-    this.cricketForm.reset();
+    this.questionnaireForm.reset();
     this.userDataService.reset();
     this.ansArrayCheck = false;
   }

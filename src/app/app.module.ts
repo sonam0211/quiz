@@ -9,14 +9,14 @@ import {MatButtonModule} from '@angular/material/button';
 
 
 import { AppComponent } from './app.component';
-import { CricketComponent } from './cricket/cricket.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { BargraphComponent } from './bargraph/bargraph.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CricketComponent,
+    QuestionnaireComponent,
     BargraphComponent
   ],
   imports: [
